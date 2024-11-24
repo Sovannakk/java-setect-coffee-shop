@@ -1,0 +1,21 @@
+services:
+  jpa-hibernate-mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: jpa_hibernate_db  # Change from MYSQL_DB to MYSQL_DATABASE
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+    volumes:
+      - jpa-hibernate-mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - jpa-hibernate-network
+
+volumes:
+  jpa-hibernate-mysql:
+networks:
+  jpa-hibernate-network:
+    driver: bridge
