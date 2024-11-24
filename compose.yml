@@ -1,21 +1,37 @@
 services:
-  jpa-hibernate-mysql:
+  coffee-shop-mysql:
     image: mysql
     restart: always
     environment:
-      MYSQL_DATABASE: jpa_hibernate_db  # Change from MYSQL_DB to MYSQL_DATABASE
+      MYSQL_DATABASE: coffee_shop_db  # Change from MYSQL_DB to MYSQL_DATABASE
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql
     volumes:
-      - jpa-hibernate-mysql:/var/lib/mysql
+      - coffee-shop-mysql:/var/lib/mysql
     ports:
       - "3307:3306"
     networks:
-      - jpa-hibernate-network
+      - coffee-shop-network
+  
+  spring-data-jpa-homework-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8085:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://coffee-shop-mysql:3306/coffee_shop_db
+      SPRING_DATASOURCE_USERNAME: mysql
+      SPRING_DATASOURCE_PASSWORD: mysql
+    depends_on:
+      - coffee-shop-mysql
+    networks:
+      - coffee-shop-network
 
 volumes:
-  jpa-hibernate-mysql:
+  coffee-shop-mysql:
 networks:
-  jpa-hibernate-network:
+  coffee-shop-network:
     driver: bridge
