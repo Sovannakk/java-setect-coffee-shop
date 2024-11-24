@@ -14,7 +14,7 @@ services:
     networks:
       - coffee-shop-network
   
-  spring-data-jpa-homework-api:
+  coffee-shop-api:
     build:
       context: .
       dockerfile: Dockerfile
