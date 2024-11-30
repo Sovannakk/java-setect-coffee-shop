@@ -19,7 +19,7 @@ COPY src ./src
 RUN chmod +x gradlew
 
 # Clean and build the project
-RUN ./gradlew clean build
+RUN ./gradlew clean bootJar
 
 # RUN STAGE
 
