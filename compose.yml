@@ -10,7 +10,7 @@ services:
     volumes:
       - coffee-shop-mysql:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - "3310:3306"
     networks:
       - coffee-shop-network
   
@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "8085:8080"
+      - "9090:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://coffee-shop-mysql:3306/coffee_shop_db
       SPRING_DATASOURCE_USERNAME: mysql
